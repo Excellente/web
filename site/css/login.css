@@ -1,0 +1,69 @@
+@import 'https://fonts.googleapis.com/css?family=Oswald';
+@import 'https://fonts.googleapis.com/css?family=Roboto';
+@import 'https://fonts.googleapis.com/css?family=Ubuntu';
+html {
+    margin: 0;
+}
+
+body {
+  margin           : 0;
+  background-color: #3e1447;
+  background-image : url("http://www.theplunge.com/images/new_york_city.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+a {
+  color: #001122;
+  margin-left: 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #e42f00;
+}
+
+input {
+  width: 65%;
+  text-shadow: 10px;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0px;
+}
+button:hover {
+  box-shadow: 2px 3px 9px #777777;
+}
+button {
+  border: 0px;
+  width: 65%;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  font-family: avenir next;
+  background-color: #001122;
+}
+#header{
+  height: 5%;
+  text-align: center;
+  font-stretch: 4px;
+  font-size: 1.9em;
+  color: #000;
+  font-weight: bold;
+  font-family: 'Oswald', sans-serif;
+  width: inherit;
+  padding-top: 1px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px #2d1447;
+}
+#form {
+  text-align: center;
+  width: 20%;
+  height: 25%;
+  margin: auto;
+  margin-top: 200px;
+  padding-top: 20px;
+  vertical-align: center;
+  background-color: rgba(200,200,200,0.5);
+}

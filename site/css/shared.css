@@ -1,0 +1,24 @@
+html {
+    margin: 0;
+}
+
+body {
+  margin:0;
+  background-color: #3e1447;
+}
+button:hover {
+  box-shadow: 2px 3px 9px #777777;
+}
+#header{
+  height: 1.5em;
+  text-align: center;
+  font-stretch: 4px;
+  font-size: 1.5em;
+  color: #000;
+  font-weight: bold;
+  font-family: 'Oswald', sans-serif;
+  width: inherit;
+  padding-top: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px #2d1447;
+}
