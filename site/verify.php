@@ -18,5 +18,5 @@ Please click this link to activate your account:
 http://www.aremac.co.za/emsimang/verify.php?email='.$email;
 $headers = 'From:noreply@yourwebsite.com' . "\r\n";
 mail($to, $subject, $message, $header);
-//header("Location: login.php");
+header("Location: login.php");
 ?>

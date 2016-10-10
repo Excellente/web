@@ -4,7 +4,7 @@
   context = canvas.getContext('2d'),
   vendorUrl = window.URL || window.webkitURL;
   navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
-                       navigator.mozgetUserMedia || navigator.msGetUserMedia
+                       navigator.mozGetUserMedia || navigator.msGetUserMedia
                        navigator.oGetUserMedia;
 
   navigator.getUserMedia({
