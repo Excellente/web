@@ -1,5 +1,4 @@
 <html>
-
     <head>
       <title>reset password</title>
       <link rel="stylesheet" type="text/css" href="css/shared.css">
@@ -18,6 +17,9 @@
           border: none;
           border-radius: 20px 0px 20px 0px;
         }
+        input:focus {
+          outline:none;
+        }
         #form {
             text-align: center;
             width: 25%;
@@ -26,7 +28,7 @@
             margin-top: 10%;
             padding-top: 2%;
             vertical-align: center;
-            background-color: rgba(200,200,200,0.5);
+            background-color: rgba(250,250,250,0.9);
         }
         button {
           width: 30%;
@@ -41,10 +43,11 @@
         }
       </style>
     </head>
+
     <body>
         <div id="header">Find you account.</div>
         <div id="form">
-          <strong><span style="color: white">please enter your email or username.</span></strong>
+          <strong><span style="color: black">please enter your email or username.</span></strong>
           <form action="" method="post">
             <input type="text" placeholder="email / username">
             <br><button>Submit</button>

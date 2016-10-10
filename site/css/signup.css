@@ -1,0 +1,36 @@
+body {
+  background        : linear-gradient(rgba(160, 55, 17, 0.7), rgba(160, 55, 17, 0.7)),
+                      url("http://www.walldevil.com/wallpapers/a63/beautiful-background-sphere-website-backgrounds-different.jpg");
+}
+strong span {
+  font-family       : 'Ubuntu', sans-serif;
+}
+input {
+  text-align        : center;
+  width             : 65%;
+  text-shadow       : 10px;
+  font-size         : 100%;
+  font-family       : 'Roboto', sans-serif;
+  padding           : 10px 10px 10px 10px;
+  margin            : 10px 0px;
+  border            : none;
+}
+#form {
+  text-align        : center;
+  width             : 25%;
+  height            : 48%;
+  margin            : auto;
+  margin-top        : 10%;
+  padding-top       : 2%;
+  background-color  : rgba(200,200,200,0.8);
+}
+button {
+  width             : 40%;
+  height            : 10%;
+  color             : white;
+  font-size         : 1.1em;
+  border            : none;
+  font-weight       : bold;
+  font-family       : avenir next;
+  background-color  : #112233;
+}

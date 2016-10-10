@@ -1,24 +1,44 @@
 html {
-    margin: 0;
+    margin          : 0;
 }
 
 body {
-  margin:0;
-  background-color: #3e1447;
+  margin            : 0;
+  background        : linear-gradient(rgba(100, 200, 255, 0.7), rgba(100, 200, 255, 0.7)),
+                      url("http://www.walldevil.com/wallpapers/a63/beautiful-background-sphere-website-backgrounds-different.jpg");
 }
 button:hover {
-  box-shadow: 2px 3px 9px #777777;
+  box-shadow        : 2px 3px 9px #777777;
 }
 #header{
-  height: 1.5em;
+  height            : 1.5em;
+  text-align        : center;
+  font-stretch      : 4px;
+  font-size         : 1.5em;
+  color             : #000;
+  font-weight       : bold;
+  font-family       : 'Oswald', sans-serif;
+  width             : inherit;
+  padding-top       : 5px;
+  background-color  : #fff;
+  box-shadow        : 0 2px 8px #2d1447;
+}
+video {
+  margin-left: 0;
+}
+#webcam {
+  width: 600px;
+  background-color: #ccc;
+  border: 10px solid grey;
+  margin: 0 auto;
+}
+.btn {
+  margin: 10px 0;
+  padding: 10px 20px;
+  display: block;
   text-align: center;
-  font-stretch: 4px;
-  font-size: 1.5em;
-  color: #000;
-  font-weight: bold;
+  text-decoration: none;
+  color: white;
   font-family: 'Oswald', sans-serif;
-  width: inherit;
-  padding-top: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 8px #2d1447;
+  background-color: cornflowerblue;
 }

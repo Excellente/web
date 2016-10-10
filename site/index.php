@@ -1,4 +1,5 @@
 <?php
+
 $servername = "localhost";
 $username   = "root";
 $password   = "wethinkcode";
@@ -9,19 +10,11 @@ try {
     $sql  = "CREATE DATABASE IF NOT EXISTS accounts";
     $conn->exec($sql);
     echo "Database created successfully<br>";
-    }
-catch(PDOException $error)
-    {
+    header("Location: main.php");
+}
+catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();
-    }
-
+}
 $conn = null;
-?>
 
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-    </body>
-</html>
+?>

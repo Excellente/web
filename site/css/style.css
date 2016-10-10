@@ -1,0 +1,22 @@
+html {
+    margin          : 0;
+}
+
+body {
+  margin            :0;
+  background-image  : url(body.jpg);
+  background-color  : #eeeeee;
+}
+
+#header{
+  text-align        : center;
+  font-stretch      : 2px;
+  font-size         : 20px;
+  color             : #ffffff;
+  font-weight       : bold;
+  font-family       : 'Oswald', sans-serif;
+  width             : inherit;
+  height            : 5%;
+  background-color  : #009905;
+  box-shadow        : 0 2px 8px grey;
+}
