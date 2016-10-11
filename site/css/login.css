@@ -40,11 +40,13 @@ button:hover {
 }
 
 button {
+  margin: 0px;
   border            : 0px;
-  width             : 65%;
+  width             : 72%;
   height            : 30px;
   color             : white;
   font-weight       : bold;
+
   font-family       : avenir next;
   background-color  : #001122;
 }

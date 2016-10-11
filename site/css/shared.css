@@ -8,7 +8,8 @@ body {
                       url("http://www.walldevil.com/wallpapers/a63/beautiful-background-sphere-website-backgrounds-different.jpg");
 }
 button:hover {
-  box-shadow        : 2px 3px 9px #777777;
+  transition: 0.3;
+  box-shadow        : 2px 4px 10px #aaaaaa;
 }
 #header{
   width: 100%;
