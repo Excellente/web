@@ -1,7 +1,6 @@
 <?php
 session_start();
-$name = $_SESSION['login'];
-echo "logged-in as: "$name;
+
 $to      = "pcheerza@gmail.com"; //$_SESSION['email'];
 $subject = 'Signup | Verification'; // Give the email a subject
 $message = '
@@ -16,6 +15,6 @@ Username: '.$name.'
 Please click this link to activate your account:
 http://www.aremac.co.za/emsimang/verify.php?email='.$email;
 $headers = 'From:noreply@yourwebsite.com' . "\r\n";
-mail($to, $subject, $message, $header);
+mail($to, $subject, $message, $headers);
 header("Location: login.php");
 ?>
