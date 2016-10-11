@@ -2,8 +2,7 @@
 session_start();
 $name = $_SESSION['login'];
 echo "logged-in as: "$name;
-$to      = "pcheerza@gmail.com";//$_SESSION['email'];
-echo "email: ". $to;
+$to      = "pcheerza@gmail.com"; //$_SESSION['email'];
 $subject = 'Signup | Verification'; // Give the email a subject
 $message = '
 
