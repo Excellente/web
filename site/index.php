@@ -9,7 +9,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql  = "CREATE DATABASE IF NOT EXISTS accounts";
     $conn->exec($sql);
-    echo "Database created successfully<br>";
+    //echo "Database created successfully<br>";
     header("Location: main.php");
 }
 catch(PDOException $error) {

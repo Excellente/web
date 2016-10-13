@@ -70,6 +70,7 @@ else if(isset($_POST['submit'])) {
     $sql = "INSERT INTO users(`firstname`, `lastname`, `login`, `email`, `password`)
            VALUES('".$fname."','".$lname."', '".$login."', '".$email."', '".$passwd."')";
     $conn->exec($sql);
+    $_SESSION['login'] = $login;
     header("Location: verify.php");
   }
   catch(PDOException $error) {
