@@ -1,14 +1,21 @@
 <?php
 session_start();
+require_once "server_connect.php";
 
 if (isset($_GET['email']) && !empty($_GET['email'])) {
-  echo 'activation '.$_GET['email'].'<br>';
+  $conn = server_connect();
+  $sql  = $conn->prepare("UPDATE users SET active = 1 WHERE email = :email");
+  $sql->bindParam(":email", $_GET['email']);
+  if (!$sql->execute())
+  {
+    $error_report "verification was unsuccessful, DON'T panic, its US not you";
+    echo 'account activated '.$_GET['email'].'<br>';
+  }
   return;
 }
-$email   = $_SESSION['email'].'<br>';
-echo $email;
-$to      = $email; //$_SESSION['email'];
-$subject = 'Verification'; // Give the email a subject
+$email   = $_SESSION['email'];
+$to      = $email;
+$subject = 'Account Verification';
 $message = '
 Thanks for signing up!
 
@@ -21,5 +28,5 @@ if ($error_report === true)
 else {
   echo "there was an error in sending the email". PHP_EOL;
 }
-//header("Location: login.php");
+header("Location: login.php");
 ?>

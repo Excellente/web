@@ -1,11 +1,14 @@
 <?php
-
+session_start();
 function server_connect()
 {
   $servername = "localhost";
   $username   = "root";
   $password   = "wethinkcode";
-  $dbname     = $_SESSION['dbname'];
+  if ($_SESSION['dbname'] === true)
+    $dbname   = "accounts";
+  else
+    $dbname   = "";
 
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

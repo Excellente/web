@@ -24,7 +24,6 @@
 </html>
 
 <?php
-
 session_start();
 require_once "server_connect.php";
 
@@ -42,22 +41,20 @@ if ($passwd != $passwdcon) {
 else if(isset($_POST['submit'])) {
   try {
     $_SESSION['email'] = $email;
-    //$conn = new PDO("mysql:host=$servername;dbname=accounts", $username, $password);
-    //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $conn = server_connect();
     $sql  = "CREATE TABLE IF NOT EXISTS users(
 	        `user_id`	 INT(8) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+          `active` INT(1) NOT NULL DEFAULT 0,
 	        `firstname` VARCHAR(255) NOT NULL,
 	        `lastname`  VARCHAR(255) NOT NULL,
 	        `login` 	 VARCHAR(80),
 	        `email` 	 VARCHAR(80) NOT NULL,
 	        `password` VARCHAR(255) NOT NULL)";
-    if ($conn->exec($sql))
-      echo "echo table was created successfuly";
+    if ($conn->query($sql))
+      echo "table was created successfuly";
     else {
       echo "couldn't create datbase table";
     }
-    /*
     $sql = $conn->prepare("SELECT * FROM users WHERE email = :email OR login = :login");
     $sql->bindParam(":email", $email);
     $sql->bindParam(":login", $login);
@@ -73,7 +70,7 @@ else if(isset($_POST['submit'])) {
     $sql = "INSERT INTO users(`firstname`, `lastname`, `login`, `email`, `password`)
            VALUES('".$fname."','".$lname."', '".$login."', '".$email."', '".$passwd."')";
     $conn->exec($sql);
-    //header("Location: verify.php");*/
+    header("Location: verify.php");
   }
   catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();

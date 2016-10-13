@@ -15,11 +15,18 @@ if(isset($_POST['signin'])) {
   try {
       $conn = new PDO("mysql:host=$servername;dbname=accounts", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = $conn->prepare("SELECT * FROM users WHERE (email = :email OR login = :login) AND password = :passwd");
+      $sql = $conn->prepare("SELECT active, login, password, email FROM users
+						 WHERE (email = :email OR login = :login) AND password = :passwd");
 			$sql->bindParam(":email", $login);
 			$sql->bindParam(":login", $login);
 			$sql->bindParam(":passwd", $passwd);
       $sql->execute();
+			$res = $sql->fetch();
+			if ($sql->rowCount() > 0 && $res['active'] == 0)
+			{
+				echo "account not active: please click the link that was sent to your email to activate this account";
+				return;
+			}
       if($sql->rowCount() > 0) {
 				$_SESSION['login'] = $_POST['login'];
 				header("Location: main.php");
