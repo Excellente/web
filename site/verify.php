@@ -8,12 +8,15 @@ if (isset($_GET['email']) && !empty($_GET['email'])) {
   $sql->bindParam(":email", $_GET['email']);
   if (!$sql->execute())
   {
-    $error_report "verification was unsuccessful, DON'T panic, its US not you";
+    $error_report = "verification was unsuccessful, DON'T panic, its US not you";
     echo 'account activated '.$_GET['email'].'<br>';
-  }
   return;
+  }
+  header("Location: login.php");
+  $conn = null;
 }
 $email   = $_SESSION['email'];
+echo $email."<br>";
 $to      = $email;
 $subject = 'Account Verification';
 $message = '

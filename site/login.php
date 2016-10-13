@@ -25,7 +25,6 @@ if(isset($_POST['signin'])) {
 			if ($sql->rowCount() > 0 && $res['active'] == 0)
 			{
 				echo "account not active: please click the link that was sent to your email to activate this account";
-				return;
 			}
       if($sql->rowCount() > 0) {
 				$_SESSION['login'] = $_POST['login'];
@@ -58,7 +57,7 @@ $conn = null;
 				<br><input type="password" required name="passwd" placeholder="password">
 				<br><button id="login" name="signin">Login</button>
 			</form>
-			<a href="reset.html">forgot your password?</a><br>
+			<a href="reset.php">forgot your password?</a><br>
 			<br>don't have an account?<a href="signup.php">Sign Up</a>
 		</div>
 	</body>
