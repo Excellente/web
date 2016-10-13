@@ -1,20 +1,16 @@
 <?php
+session_start();
+require_once "server_connect.php";
+$_SESSION['dbname'] = 'accounts';
 
-$servername = "localhost";
-$username   = "root";
-$password   = "wethinkcode";
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql  = "CREATE DATABASE IF NOT EXISTS accounts";
-    $conn->exec($sql);
-    //echo "Database created successfully<br>";
-    header("Location: main.php");
+$conn = server_connect();
+$sql  = "CREATE DATABASE IF NOT EXISTS accounts";
+if ($conn->query($sql))
+  echo "Database created successfully<br>";
+else {
+  echo "couldn't create DATABASE<br>";
 }
-catch(PDOException $error) {
-    echo $sql . "<br>" . $error->getMessage();
-}
+//header("Location: main.php");
 $conn = null;
 
 ?>

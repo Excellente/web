@@ -24,12 +24,9 @@
 </html>
 
 <?php
-//create new user
-//get account attributes and stored them in a database
-//log the new user in
-$servername = "localhost";
-$username   = "root";
-$password   = "wethinkcode";
+
+session_start();
+require_once "server_connect.php";
 
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
@@ -44,9 +41,10 @@ if ($passwd != $passwdcon) {
 }
 else if(isset($_POST['submit'])) {
   try {
-    $_SESSION['email'] = $_POST['email'];
-    $conn = new PDO("mysql:host=$servername;dbname=accounts", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $_SESSION['email'] = $email;
+    //$conn = new PDO("mysql:host=$servername;dbname=accounts", $username, $password);
+    //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn = server_connect();
     $sql  = "CREATE TABLE IF NOT EXISTS users(
 	        `user_id`	 INT(8) PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	        `firstname` VARCHAR(255) NOT NULL,
@@ -54,7 +52,12 @@ else if(isset($_POST['submit'])) {
 	        `login` 	 VARCHAR(80),
 	        `email` 	 VARCHAR(80) NOT NULL,
 	        `password` VARCHAR(255) NOT NULL)";
-    $conn->exec($sql);
+    if ($conn->exec($sql))
+      echo "echo table was created successfuly";
+    else {
+      echo "couldn't create datbase table";
+    }
+    /*
     $sql = $conn->prepare("SELECT * FROM users WHERE email = :email OR login = :login");
     $sql->bindParam(":email", $email);
     $sql->bindParam(":login", $login);
@@ -70,8 +73,7 @@ else if(isset($_POST['submit'])) {
     $sql = "INSERT INTO users(`firstname`, `lastname`, `login`, `email`, `password`)
            VALUES('".$fname."','".$lname."', '".$login."', '".$email."', '".$passwd."')";
     $conn->exec($sql);
-    $_SESSION['login'] = $login;
-    header("Location: verify.php");
+    //header("Location: verify.php");*/
   }
   catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();
