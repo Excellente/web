@@ -48,4 +48,5 @@ if (isset($_POST['user']) && !empty($_POST['user'])) {
     $error_report = mail($to, $subject, $message, $headers);
   }
 }
+$conn = null;
 ?>

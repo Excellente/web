@@ -1,6 +1,7 @@
 (function (){
   var video = document.getElementById('video'),
   canvas = document.getElementById('canvas'),
+  photo = document.getElementById('photo'),
   context = canvas.getContext('2d'),
   vendorUrl = window.URL || window.webkitURL;
   navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
@@ -19,5 +20,6 @@
 
   document.getElementById('snapshot').addEventListener('click', function() {
     context.drawImage(video, 0, 0, 700, 400);
+    photo.setAttribute("src", canvas.toDataUrl('image/png'));
   });
 })();

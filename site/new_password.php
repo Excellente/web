@@ -50,7 +50,7 @@ try
         $sql->bindParam(":passwd", $newpd);
         if ($sql->execute())
           echo "password was successfuly changed, you can now login with your new password :)";
-        //header("Location: login.php");
+        header("Location: login.php");
     }
   }
 }
@@ -58,4 +58,5 @@ catch (PDOException $err)
 {
   echo $sql ."". $err->getMessage();
 }
+$conn = null;
 ?>
