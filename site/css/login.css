@@ -2,28 +2,26 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto';
 @import 'https://fonts.googleapis.com/css?family=Ubuntu';
 html {
-    margin          : 0;
+    margin              : 0;
 }
-
 body {
   margin: 0;
-  /*background-image  : url(http://www.theplunge.com/images/new_york_city.jpg)center center;
-  */
-  background        :rgba(39, 9, 66, 0.8) url(http://www.theplunge.com/images/new_york_city.jpg)center center;
-  background-repeat : no-repeat;
-  background-size   : cover;
-  background-attachment: fixed;
+  background            :rgba(39, 9, 66, 0.8) url(http://www.theplunge.com/images/new_york_city.jpg)center center;
+  background-repeat     : no-repeat;
+  background-size       : cover;
+  background-attachment : fixed;
 }
-
 a {
   color             : #3e1122;
   margin-left       : 10px;
   text-align        : center;
   text-decoration   : none;
 }
-
 a:hover {
   color             : #fff;
+}
+input:focus {
+  outline           : none;
 }
 
 input {
@@ -34,11 +32,9 @@ input {
   padding           : 10px 10px 10px 10px;
   margin            : 10px 0px;
 }
-
 button:hover {
   box-shadow        : 2px 3px 9px rgba(20, 0, 20, 0.2);
 }
-
 button {
   margin: 0px;
   border            : 0px;
@@ -46,11 +42,9 @@ button {
   height            : 30px;
   color             : white;
   font-weight       : bold;
-
   font-family       : avenir next;
   background-color  : #001122;
 }
-
 #header{
   height            : 5%;
   text-align        : center;
@@ -64,7 +58,6 @@ button {
   background-color  : #fff;
   box-shadow        : 0 2px 8px #2d1447;
 }
-
 #form {
   text-align        : center;
   width             : 20%;

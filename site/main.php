@@ -7,15 +7,12 @@
 	</head>
 	<body>
 		<div id="header">
-			<div class="logo">
-				<img width="60" height="60" src="logo.png" alt="logo" />
-			</div>
 		</div>
 		<div id="wrapper">
 			<video id="video" width="500" height="400"></video>
 			<a href="#" class="btn" id="snapshot">Take Snapshot</a>
 			<canvas id="canvas" width="500" height="500"></canvas>
-			<img id="photo" width="200" height="200" src="thumbnail.jpg">
+			<img id="photo" alt="photo" width="200" height="200" src="thumbnail.jpg">
 			<a href="logout.php" class="btn">Logout</a>
 		</div>
 		<div id="right-content">Right content here</div>
@@ -26,14 +23,21 @@
 
 <?php
 require_once "server_connect.php";
-/*
+
 try
 {
 	$conn = server_connect();
 	$sql = $conn->prepare("CREATE TABLE IF NOT EXISTS images(
-				 `user_id` INT(8) NOT NULL AUTO_INCREMENT,
-				 `image` BLOB
+				 `image_id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				 `user_id` INT(8) NOT NULL,
+				 `image` BLOB NOT NULL,
+				 `likes` INT(8)
 	)");
+	$conn->query($sql);
 }
-*/
+catch(PDOException $error)
+{
+	echo $sql ."Error". $error->getMessage();
+}
+$conn = null;
 ?>

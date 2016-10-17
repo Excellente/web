@@ -1,13 +1,11 @@
 html {
     margin          : 0;
 }
-
 body {
   margin            :0;
   background-image  : url(body.jpg);
   background-color  : #eeeeee;
 }
-
 #header{
   text-align        : center;
   font-stretch      : 2px;

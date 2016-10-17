@@ -10,7 +10,6 @@
         <div id="form">
           <!--<strong><span style="color: black">please enter your email or username.</span></strong>-->
           <form action="" method="post">
-            <input type="password" required name="oldpd" placeholder="Old password">
             <input type="password" required name="newpd" placeholder="New password">
             <input type="password" required name="cnewpd" placeholder="Confirm new password">
             <br><button>Submit</button>
@@ -25,32 +24,25 @@ require_once "server_connect.php";
 $email = $_GET['email'];
 try
 {
-  if (isset($_POST['oldpd']) && isset($_POST['newpd']) && isset($_POST['cnewpd']))
+  if (isset($_POST['newpd']) && isset($_POST['cnewpd']))
   {
     if ($_POST['newpd'] != $_POST['cnewpd'])
     {
-      echo "the new passwords dont match";
+      echo "passwords dont match";
       return;
     }
-    $oldpd = hash(whirlpool, $_POST['oldpd']);
     $newpd = hash(whirlpool, $_POST['newpd']);
     $conn  = server_connect();
-    $sql   = $conn->prepare("SELECT password FROM users WHERE email = :email");
+    $sql = $conn->prepare("UPDATE users SET password = :passwd WHERE email = :email");
     $sql->bindParam(":email", $email);
-    $sql->execute();
-    $res = $sql->fetch();
-    if (!($res['password'] == $oldpd))
+    $sql->bindParam(":passwd", $newpd);
+    if ($sql->execute())
     {
-      echo "The old password entered doesn't match any account in our Database". PHP_EOL;
+      echo "password was successfuly changed, you can now login with your new password :)". PHP_EOL;
+      header("Location: login.php");
     }
-    else
-    {
-        $sql = $conn->prepare("UPDATE users SET password = :passwd WHERE email = :email");
-        $sql->bindParam(":email", $email);
-        $sql->bindParam(":passwd", $newpd);
-        if ($sql->execute())
-          echo "password was successfuly changed, you can now login with your new password :)";
-        header("Location: login.php");
+    else {
+      echo "en error occured changing your password please make sure that all the information entered is coprrect". PHP_EOL;
     }
   }
 }

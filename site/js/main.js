@@ -15,11 +15,11 @@
     video.src = vendorUrl.createObjectURL(stream);
     video.play();
   }, function (err){
-    //
+    //error handling
   });
 
   document.getElementById('snapshot').addEventListener('click', function() {
     context.drawImage(video, 0, 0, 700, 400);
-    photo.setAttribute("src", canvas.toDataUrl('image/png'));
+    photo.setAttribute("src", canvas.toDataUrl());
   });
 })();

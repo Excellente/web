@@ -6,9 +6,9 @@
 #    By: emsimang <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/10 18:08:26 by emsimang          #+#    #+#              #
-#    Updated: 2016/10/13 07:41:38 by emsimang         ###   ########.fr        #
+#    Updated: 2016/10/17 12:07:33 by emsimang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 RED='\033[1;32m'
 printf "${RED}yet another git commit and push round";
-while sleep 3600; do (sh push.sh); done
+while sleep 14400; do (sh push.sh); done

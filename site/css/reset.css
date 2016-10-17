@@ -12,9 +12,6 @@ input {
   border: none;
   border-radius: 20px 0px 20px 0px;
 }
-input:focus {
-  outline:none;
-}
 #form {
     text-align: center;
     width: 25%;
