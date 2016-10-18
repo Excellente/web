@@ -4,6 +4,11 @@
       <title>reset password</title>
       <link rel="stylesheet" type="text/css" href="css/shared.css">
       <link rel="stylesheet" type="text/css" href="css/reset.css">
+      <style>
+        #form {
+          padding: 20px;
+        }
+      </style>
     </head>
     <body>
         <div id="header">Find you account.</div>
@@ -19,10 +24,12 @@
 
 <?php
 session_start();
-require_once "server_connect.php";
+require_once "Database.class.php";
+require_once "config/database.php";
 
+$start = new Database($DB_DSN."accounts", $DB_USER, $DB_PASSWORD);
 if (isset($_POST['user']) && !empty($_POST['user'])) {
-  $conn = server_connect();
+  $conn = $start->server_connect();
   $sql  = $conn->prepare("SELECT email FROM users WHERE (email = :email OR login = :login)");
   $sql->bindParam(":email", $_POST['user']);
   $sql->bindParam(":login", $_POST['user']);
@@ -35,7 +42,7 @@ if (isset($_POST['user']) && !empty($_POST['user'])) {
   {
     $res     = $sql->fetch();
     $email   = $res['email'];
-    echo "an  email has been sent to your mailbox with the password reset link";
+    echo "<div id='form'><strong><span style='color: black'>an  email has been sent to your mailbox with the password reset link.</span></strong></div>";
     $email   = $_SESSION['email'];
     $to      = $email;
     $subject = 'Password Reset';

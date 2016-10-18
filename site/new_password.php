@@ -19,8 +19,10 @@
 </html>
 
 <?php
-require_once "server_connect.php";
+require_once "Database.class.php";
+require_once "config/database.php";
 
+$start = new Database($DB_DSN."accounts", $DB_USER, $DB_PASSWORD);
 $email = $_GET['email'];
 try
 {
@@ -32,7 +34,7 @@ try
       return;
     }
     $newpd = hash(whirlpool, $_POST['newpd']);
-    $conn  = server_connect();
+    $conn  = $start->server_connect();
     $sql = $conn->prepare("UPDATE users SET password = :passwd WHERE email = :email");
     $sql->bindParam(":email", $email);
     $sql->bindParam(":passwd", $newpd);

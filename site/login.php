@@ -1,49 +1,3 @@
-<?php
-session_start();
-
-$servername = "localhost";
-$username   = "root";
-$password   = "wethinkcode";
-
-$login = $_POST['login'];
-$passwd = hash(whirlpool, $_POST['passwd']);
-
-if (!empty($_SESSION['login'])) {
-	header("Location: main.php");
-}
-if(isset($_POST['signin'])) {
-  try {
-      $conn = new PDO("mysql:host=$servername;dbname=accounts", $username, $password);
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = $conn->prepare("SELECT active, login, password, email FROM users
-						 WHERE (email = :email OR login = :login) AND password = :passwd");
-			$sql->bindParam(":email", $login);
-			$sql->bindParam(":login", $login);
-			$sql->bindParam(":passwd", $passwd);
-      $sql->execute();
-			$res = $sql->fetch();
-			if ($sql->rowCount() > 0 && $res['active'] == 0)
-			{
-				echo "account not active: please click the link that was sent to your email to activate this account";
-				sleep(5);
-				header("Location: login.php");
-			}
-      if($sql->rowCount() > 0 && $res['active'] == 1) {
-				$_SESSION['login'] = $_POST['login'];
-				header("Location: main.php");
-			}
-			else {
-				echo "<strong>unknown user</strong>". PHP_EOL;
-			}
-	}
-	catch (PDOException $err) {
-		echo $sql ."". $err->getMessage();
-	}
-}
-$conn = null;
-
-?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -64,3 +18,50 @@ $conn = null;
 		</div>
 	</body>
 </html>
+
+<?php
+session_start();
+
+$servername = "localhost";
+$username   = "root";
+$password   = "wethinkcode";
+
+if (!empty($_SESSION['login'])) {
+	header("Location: index.php");
+}
+if(isset($_POST['signin']))
+{
+  try
+	{
+		$login = $_POST['login'];
+		$passwd = hash('whirlpool', $_POST['passwd']);
+    $conn = new PDO("mysql:host=$servername;dbname=accounts", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = $conn->prepare("SELECT active, login, password, email FROM users
+					 WHERE (email = :email OR login = :login) AND password = :passwd");
+		$sql->bindParam(":email", $login);
+		$sql->bindParam(":login", $login);
+		$sql->bindParam(":passwd", $passwd);
+    $sql->execute();
+		$res = $sql->fetch();
+		if ($sql->rowCount() > 0 && $res['active'] == 0)
+		{
+			echo "account not active: please click the link that was sent to your email to activate this account";
+			sleep(5);
+			header("Location: login.php");
+		}
+    if($sql->rowCount() > 0 && $res['active'] == 1) {
+			$_SESSION['login'] = $_POST['login'];
+			header("Location: index.php");
+		}
+		else {
+			echo "<strong>unknown user</strong>". PHP_EOL;
+		}
+	}
+	catch (PDOException $err) {
+		echo $sql ."". $err->getMessage();
+	}
+}
+$conn = null;
+
+?>
