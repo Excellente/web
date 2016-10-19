@@ -27,12 +27,19 @@ session_start();
 require_once "Database.class.php";
 require_once "config/database.php";
 
-$start = new Database($DB_DSN."accounts", $DB_USER, $DB_PASSWORD);
+$start = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
 if (isset($_POST['user']) && !empty($_POST['user'])) {
   $conn = $start->server_connect();
+  $mail = $_POST['user'];
+  $hash = hash('whirlpool', $mail."".rand());
+  $sql  = $conn->prepare("UPDATE users SET hashkey = :hash WHERE (email = :email OR login = :login)");
+  $sql->bindParam(":hash", $hash);
+  $sql->bindParam(":email", $mail);
+  $sql->bindParam(":login", $mail);
+  $sql->execute();
   $sql  = $conn->prepare("SELECT email FROM users WHERE (email = :email OR login = :login)");
-  $sql->bindParam(":email", $_POST['user']);
-  $sql->bindParam(":login", $_POST['user']);
+  $sql->bindParam(":email", $mail);
+  $sql->bindParam(":login", $mail);
   $sql->execute();
   if (!($sql->rowCount() > 0)) {
     echo "please enter your correct email or username";
@@ -50,7 +57,7 @@ if (isset($_POST['user']) && !empty($_POST['user'])) {
     Someone has requested to change your password!
 
     If it wasn\'t you ignore this email, if it was you, please click this link to reset your password:
-    http://127.0.0.1:8080/emsimang/new_password.php?email='.$email;
+    http://127.0.0.1:8080/emsimang/new_password.php?email='.$email.'&hashkey='.$hash;
     $headers = 'From:noreply@aremac.com'."\r\n";
     $error_report = mail($to, $subject, $message, $headers);
   }

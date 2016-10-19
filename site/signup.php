@@ -28,7 +28,7 @@
 require_once "config/database.php";
 require_once "Database.class.php";
 
-$start = new Database($DB_DSN."accounts", $DB_USER, $DB_PASSWORD);
+$start = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
 
 if (isset($_POST['submit'])) {
   $fname = $_POST['fname'];
@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
       header("Location: verify.php");
     }
     catch(PDOException $error) {
-      echo $sql . "<br>" . $error->getMessage();
+      echo $error->getMessage();
     }
     $conn = null;
   }

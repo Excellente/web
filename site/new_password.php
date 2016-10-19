@@ -22,8 +22,9 @@
 require_once "Database.class.php";
 require_once "config/database.php";
 
-$start = new Database($DB_DSN."accounts", $DB_USER, $DB_PASSWORD);
+$start = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
 $email = $_GET['email'];
+$hash  = $_GET['hashkey'];
 try
 {
   if (isset($_POST['newpd']) && isset($_POST['cnewpd']))
@@ -35,7 +36,8 @@ try
     }
     $newpd = hash(whirlpool, $_POST['newpd']);
     $conn  = $start->server_connect();
-    $sql = $conn->prepare("UPDATE users SET password = :passwd WHERE email = :email");
+    $sql = $conn->prepare("UPDATE users SET password = :passwd WHERE email = :email AND hashkey = :hash");
+    $sql->bindParam(":hash", $hash);
     $sql->bindParam(":email", $email);
     $sql->bindParam(":passwd", $newpd);
     if ($sql->execute())

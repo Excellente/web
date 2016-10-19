@@ -43,7 +43,9 @@ class Database
 	        `lastname`  VARCHAR(255) NOT NULL,
 	        `login` 	 VARCHAR(80),
 	        `email` 	 VARCHAR(80) NOT NULL,
-	        `password` VARCHAR(255) NOT NULL)";
+	        `password` VARCHAR(255) NOT NULL,
+          `salt` VARCHAR(255),
+          `hashkey` VARCHAR(255))";
 
     if ($conn->query($sql))
     {

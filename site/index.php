@@ -10,16 +10,16 @@
 		</div>
 		<div id="wrapper">
 			<div id="vid">
-				<video id="video" width="500" height="400"></video>
-				<a href="#" class="btn" id="snapshot">Take Snapshot</a>
+				<video controls autoplay id="video" width="500" height="400"></video>
+				<button class="snap" id="snap">Take Snapshot</button>
 				<canvas id="canvas" width="500" height="500"></canvas>
 			</div>
-			<!--<img id="photo" alt="photo" width="200" height="200" src="thumbnail.jpg">-->
+			<img id="photo" alt="photo" width="200" height="200" src="">
 			<a href="logout.php" class="btn">Logout</a>
 		</div>
 		<div id="right-content">Right content here</div>
 		<div id="footer">i am a footer</div>
-		<script src="js/main.js"></script>
+		<script src="js/index.js"></script>
 	</body>
 </html>
 
@@ -27,9 +27,11 @@
 require_once "config/database.php";
 require_once "Database.class.php";
 
-$start = new Database($DB_DSN."accounts", $DB_USER, $DB_PASSWORD);
+$start = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
 try
 {
+	//$data = $POST['img'];
+	//$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
 	$conn = $start->server_connect();
 }
 catch(PDOException $error)

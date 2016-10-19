@@ -1,7 +1,5 @@
 body {
   background        : linear-gradient(rgba(10, 10, 10, 0.1), rgba(10, 20, 2, 0.1)),
-                      url("http//www.beautiful-views.net/views/camera-photographic-flowers-girl-forest-way.jpg");
-                      z-index: -100;
 }
 video {
   margin-left: 0;

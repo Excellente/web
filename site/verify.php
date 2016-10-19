@@ -3,7 +3,7 @@ session_start();
 require_once "config/database.php";
 require_once "Database.class.php";
 
-$start = new Database($DB_DSN."accounts", $DB_USER, $DB_PASSWORD);
+$start = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
 if (isset($_GET['email']) && !empty($_GET['email'])) {
   $conn = $start->server_connect();
   $sql  = $conn->prepare("UPDATE users SET active = 1 WHERE email = :email");
@@ -20,13 +20,14 @@ if (isset($_GET['email']) && !empty($_GET['email'])) {
 }
 else {
   $email   = $_SESSION['email'];
+  $hash    = hash('whirlpool', $email."".rand());
   $to      = $email;
   $subject = 'Account Verification';
   $message = '
   Thanks for signing up!
 
   Please click the link below to activate your account:
-  http://127.0.0.1:8080/emsimang/verify.php?email='.$email.'
+  http://127.0.0.1:8080/emsimang/verify.php?email='.$email.'&hashkey'.$hash.'
 
   If you feel this is annoying, yeah we know, but this is soley
   done to ensure maximum security of your personal data.';
