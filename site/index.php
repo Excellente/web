@@ -30,7 +30,7 @@ require_once "Database.class.php";
 $start = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
 try
 {
-	//$data = $POST['img'];
+	$data = $_REQUEST['image'];
 	//$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
 	$conn = $start->server_connect();
 }

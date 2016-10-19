@@ -18,12 +18,14 @@
   }, function (err){
     //error handling
   });
-
-  document.getElementById('snap').addEventListener('click', function() {
+  function saveimg()
+  {
     imgURL = canvas.toDataURL();
     context.drawImage(video, 0, 0, 700, 400);
-    console.log(imgURL);
     photo.setAttribute("src", imgURL);
-  });
-
+  }
+  var jsondata = {'image':imgURL};
+  document.getElementById('snap').addEventListener('click', saveimg);
+  xhttp.open('GET', 'index.php', true);
+  xhttp.send(jasondata);
 })();
