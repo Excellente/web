@@ -1,27 +1,55 @@
 body {
-  background        : linear-gradient(rgba(10, 10, 10, 0.1), rgba(10, 20, 2, 0.1)),
+  margin: 0;
+  background        : linear-gradient(rgba(10, 10, 10, 0.5), rgba(10, 20, 2, 0.5)),
+                       url("https://s-media-cache-ak0.pinimg.com/originals/83/b8/77/83b87791117a9354d104b870627f2915.jpg");
 }
 video {
   margin-left: 0;
 }
-#vid {
-
+#header ul a{
+  display: block;
+  text-decoration: none;
+  padding-right: 24px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: inline-block;
+}
+#header {
+  height            : 4.0em;
+  text-align        : center;
+  font-stretch      : 4px;
+  color             : #000;
+  font-weight       : bold;
+  font-family       : 'Oswald', sans-serif;
+  width             : inherit;
+  padding-top       : 5px;
+  background-color  : #fff;
+  box-shadow        : 0 2px 8px #2d1447;
+  border: 1px soli grey;
 }
 #wrapper {
-  margin: 20px;
+  margin: 2% 2%;;
   float: left;
-  width: 60%;
-  height: 30%;
+  background-color: rgba(0, 0, 0, 0.7);;
+  width: 40%;
+  height: 10%;
   border: 1px solid grey;
 }
 #right-content {
   color: black;
-  width: 39%;
+  width: 3%;
   font-size: 20px;
   font-weight: bold;
   float: right;
   border: 1px solid blue;
   margin: 20px;
+  background-color: orange;
+  transition: width 0.5s;
+  -webkit-transition: width 0.5s;
+}
+#right-content:hover {
+  width: 39%;
 }
 #footer {
   color: black;
@@ -34,10 +62,11 @@ video {
   border: 1px solid red;
   vertical-align: bottom;
 }
-#webcam {
-  width: 600px;
+#wrappe {
+  width: 50%;
+  margin-top: 20px;
   background-color: #ccc;
-  border: 10px solid grey;
+  border: 1px solid grey;
   margin: 0 auto;
 }
 .btn {

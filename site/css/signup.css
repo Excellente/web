@@ -1,5 +1,5 @@
 body {
-  background        : linear-gradient(rgba(160, 55, 17, 0.7), rgba(160, 55, 17, 0.7)),
+  background        : linear-gradient(rgba(255,109,0 ,0.4), rgba(255,109,0 ,0.4)),
                       url("http://www.walldevil.com/wallpapers/a63/beautiful-background-sphere-website-backgrounds-different.jpg");
 }
 strong span {
@@ -23,6 +23,12 @@ input {
   margin-top        : 10%;
   padding-top       : 2%;
   background-color  : rgba(200,200,200,0.8);
+}
+footer {
+  height: 20%;
+  text-align: center;
+  vertical-align: bottom;
+  background-color: white;
 }
 button {
   width             : 40%;

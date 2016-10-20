@@ -25,7 +25,13 @@ class Database
     }
     return ($conn);
   }
-
+  function dropdb($conn)
+  {
+    $sql = "DROP DATABASE IF EXISTS accounts";
+    if ($conn->query($sql))
+      return TRUE;
+    return FALSE;
+  }
   function create_schema($conn)
   {
     $sql  = "CREATE DATABASE IF NOT EXISTS accounts;USE accounts;";
@@ -58,7 +64,7 @@ class Database
     $sql = ("CREATE TABLE IF NOT EXISTS images(
   				 `image_id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   				 `user_id` INT(8) NOT NULL,
-  				 `image` BLOB NOT NULL,
+  				 `image` VARCHAR(255) NOT NULL,
   				 `likes` INT(8))");
     if ($conn->query($sql))
     {

@@ -46,9 +46,7 @@ if(isset($_POST['signin']))
 		$res = $sql->fetch();
 		if ($sql->rowCount() > 0 && $res['active'] == 0)
 		{
-			echo "account not active: please click the link that was sent to your email to activate this account";
-			sleep(5);
-			header("Location: login.php");
+			header("Location: notverified.php");
 		}
     if($sql->rowCount() > 0 && $res['active'] == 1) {
 			$_SESSION['login'] = $_POST['login'];
