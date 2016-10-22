@@ -51,7 +51,7 @@ header('Content/type: image/png');
 imagepng($image, $ipath);
 try
 {
-  if (!empty($_SESSION['login']) || isset($_SESSION['login']))
+  if (isset($_SESSION['login']))
   {
     $loggedin = $_SESSION['login'];
     $conn = $start->server_connect();
@@ -76,7 +76,8 @@ try
     }
   }
   else {
-    echo "please login to take pictures";
+    echo json_encode(array("error" => "error"));
+    header("Location: login.php");
   }
 }
 catch(PDOException $error)

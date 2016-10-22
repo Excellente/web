@@ -7,9 +7,9 @@
 	<body>
 		<div id="header">
 				<ul>
-					<a href="##">Home</a>
+					<a href="index.php">Home</a>
 					<a href="login.php">Login</a>
-					<a href="##">Gallery</a>
+					<a href="gallery.php">Gallery</a>
 					<a href="logout.php">logout</a>
 				</ul>
 		</div>
@@ -21,20 +21,19 @@
 				</div>
 				<video controls autoplay id="video" width="500" height="400"></video>
 				<img onclick="setId(this)" class="s_i" id="super_1" alt="photo"
-					   width="200" height="200" src="super_i/super_1.gif">
+					   width="200" height="200" src="super_i/super_1.png">
 				<img onclick="setId(this)" class="s_i" id="super_2" alt="photo"
 						 width="200" height="200" src="super_i/super_2.png">
 				<img onclick="setId(this)" class="s_i" id="super_3" alt="photo"
-						 width="200" height="200" src="super_i/super_3.png">
+						 width="200" height="200" src="super_i/super_1.jpg">
 				<a href="#" onclick="flash()" id="snap" style="" class="btn">SnapShot</a>
 			</div>
 		</div>
-		<div class="recent" id="right-content">
+		<div id="right-content">
 			<img src="" id="pic" alt="your-pic">
 			<canvas id="canvas" width="600" height="400"></canvas>
 		</div>
 		<!--
-		<div id="right-content">Right content here</div>
 		<div id="footer">i am a footer</div>-->
 		<script src="js/index.js">
 		document.getElementById('super_1').addEventListener('click', funtion ()
