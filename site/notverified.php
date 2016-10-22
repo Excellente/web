@@ -33,7 +33,7 @@ echo "
       <strong><span style='font-size:9em'>
       Account not Verified
       </span></strong><br>
-      please check your email to verify account;
+      please check your email to verify account
     </div>
   </body>
 </html>";

@@ -19,7 +19,11 @@ if (isset($_GET['email']) && !empty($_GET['email'])) {
   $conn = null;
 }
 else {
-  $email   = $_SESSION['email'];
+  if (isset($_SESSION['email']))
+    $email   = $_SESSION['email'];
+  else {
+    echo "set the email key first<br>";
+  }
   $hash    = hash('whirlpool', $email."".rand());
   $to      = $email;
   $subject = 'Account Verification';

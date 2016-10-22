@@ -25,7 +25,7 @@
 </html>
 
 <?php
-//require_once "server_connect.php";
+session_start();
 require_once "config/database.php";
 require_once "Database.class.php";
 
