@@ -8,8 +8,9 @@
 		<div id="header">
 				<ul>
 					<a href="##">Home</a>
-					<a href="##">Login</a>
+					<a href="login.php">Login</a>
 					<a href="##">Gallery</a>
+					<a href="logout.php">logout</a>
 				</ul>
 		</div>
 		<div id="wrapper">
@@ -25,12 +26,12 @@
 						 width="200" height="200" src="super_i/super_2.png">
 				<img onclick="setId(this)" class="s_i" id="super_3" alt="photo"
 						 width="200" height="200" src="super_i/super_3.png">
-				<a href="#" id="snap" style="" class="btn">SnapShot</a>
+				<a href="#" onclick="flash()" id="snap" style="" class="btn">SnapShot</a>
 			</div>
 		</div>
-		<div class="recent">
+		<div class="recent" id="right-content">
 			<img src="" id="pic" alt="your-pic">
-			<canvas id="canvas" width="500" height="400"></canvas>
+			<canvas id="canvas" width="600" height="400"></canvas>
 		</div>
 		<!--
 		<div id="right-content">Right content here</div>

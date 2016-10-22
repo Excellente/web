@@ -2,7 +2,7 @@ var imgURL = "Nothing passed";
 var xhttp = new XMLHttpRequest();
 var video = document.getElementById('video'),
 canvas = document.getElementById('canvas'),
-photo = document.getElementById('photo'),
+photo = document.getElementById('pic'),
 context = canvas.getContext('2d'),
 vendorUrl = window.URL || window.webkitURL;
 navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
@@ -31,11 +31,20 @@ function setId(element)
   console.log(id);
 }
 
+function flash()
+{
+  document.getElementById('overlay-div').style.backgroundColor = "rgba(33, 150, 243, 0.5)";
+  setTimeout(function ()
+  {
+    document.getElementById('overlay-div').style.backgroundColor = "transparent";
+  }, 30);
+}
+
 function saveimg()
 {
   imgURL = canvas.toDataURL('image/png');
   context.drawImage(video, 0, 0, 700, 400);
-  //photo.setAttribute("src", imgURL);
+  photo.setAttribute("src", imgURL);
   var toImpose = document.getElementById('imposed').getAttribute('src');
   console.log("captured image "+toImpose);
   var data = "data="+imgURL+"&toImpose="+toImpose;

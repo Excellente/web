@@ -21,7 +21,7 @@
 
 <?php
 session_start();
-
+$error = "";
 $servername = "localhost";
 $username   = "root";
 $password   = "wethinkcode";
@@ -49,7 +49,7 @@ if(isset($_POST['signin']))
 			header("Location: notverified.php");
 		}
     if($sql->rowCount() > 0 && $res['active'] == 1) {
-			$_SESSION['login'] = $_POST['login'];
+			$_SESSION['login'] = $login;
 			header("Location: index.php");
 		}
 		else {

@@ -1,35 +1,82 @@
 <?php
+session_start();
 require_once "config/database.php";
 require_once "Database.class.php";
 
-$start = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
+function image_clear($img)
+{
+  imagedestroy($img);
+}
 
-$data  = $_POST['data'];
+function imagefrom_base64($data)
+{
+  $image = str_replace("data:image/png;base64,", "", $data);
+  $image = str_replace(" ", "+", $image);
+  $image = base64_decode($image);
+  return ($image);
+}
+
+function merge_images($img_dst, $img_src)
+{
+  $image = imagecreatetruecolor(500, 400);
+  imagealphablending($image, false);
+  imagesavealpha($image, true);
+  imagesavealpha($image, true);
+  imagecopy($image, $img_dst, 0, 0, 0, 0, 500, 400);
+  imagealphablending($image, true);
+  imagescale($img_src, 50, 50);
+  imagecopy($image, $img_src, 0, 0, 0, 0, 500, 400);
+  return ($image);
+}
+
+$start    = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
+$data     = $_POST['data'];
 $toImpose = $_POST['toImpose'];
-$image = str_replace("data:image/png;base64,", "", $data);
-$image = str_replace(" ", "+", $image);
-$image = base64_decode($image);
-
-//$src   = imagecreatefrompng($toImpose);
-//imagecopymerge($dest, $src, 10, 10, 0, 0, 100, 47, 75);
-//header('Content/type: image/png');
-//imagepng($image);
-$ipath = "images/".time().".png";
+$info     = getimagesize($toImpose);
+$ext      = image_type_to_extension($info[2]);
+$ipath    = "images/".time().".png";
+$image    = imagefrom_base64($data);
 
 file_put_contents($ipath, $image);
-$image  = imagecreatefrompng($ipath);
+if (strcmp($ext, ".gif") == 0)
+  $src   = imagecreatefromgif($toImpose);
+else
+  $src   = imagecreatefrompng($toImpose);
+$dest    = imagecreatefrompng($ipath);
+imagescale($src, 500, 400);
+$image   = merge_images($dest, $src);
+image_clear($src);
+image_clear($dest);
+header('Content/type: image/png');
+imagepng($image, $ipath);
 try
 {
-  $conn = $start->server_connect();
-  $sql = $conn->prepare("INSERT INTO images(`image`) VALUES (:img)");
-  $sql->bindParam(":img", $ipath);
-  if ($sql->execute())
+  if (!empty($_SESSION['login']) || isset($_SESSION['login']))
   {
-    $img = array('image' => $ipath);
-    echo json_encode($img);
+    $loggedin = $_SESSION['login'];
+    $conn = $start->server_connect();
+    $sql = $conn->prepare("SELECT * FROM users WHERE login = :login");
+    $sql->bindParam(":login", $loggedin);
+    if ($sql->execute())
+    {
+      $res = $sql->fetch();
+    }
+    else
+      echo "error";
+    $sql = $conn->prepare("INSERT INTO images(`image`, `user_id`) VALUES (:img, :user)");
+    $sql->bindParam(":img", $ipath);
+    $sql->bindParam(":user", $res['user_id']);
+    if ($sql->execute())
+    {
+      $img = array('image' => $ipath);
+      echo json_encode($img);
+    }
+    else {
+      echo "failure". PHP_EOL;
+    }
   }
   else {
-    echo "failure". PHP_EOL;
+    echo "please login to take pictures";
   }
 }
 catch(PDOException $error)
