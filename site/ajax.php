@@ -21,7 +21,6 @@ function merge_images($img_dst, $img_src)
   $image = imagecreatetruecolor(500, 400);
   imagealphablending($image, false);
   imagesavealpha($image, true);
-  imagesavealpha($image, true);
   imagecopy($image, $img_dst, 0, 0, 0, 0, 500, 400);
   imagealphablending($image, true);
   imagescale($img_src, 50, 50);
@@ -30,8 +29,8 @@ function merge_images($img_dst, $img_src)
 }
 
 $start    = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
-$data     = $_POST['data'];
-$toImpose = $_POST['toImpose'];
+$data     = htmlspecialchars($_POST['data']);
+$toImpose = htmlspecialchars($_POST['toImpose']);
 $info     = getimagesize($toImpose);
 $ext      = image_type_to_extension($info[2]);
 $ipath    = "images/".time().".png";
@@ -43,7 +42,6 @@ if (strcmp($ext, ".gif") == 0)
 else
   $src   = imagecreatefrompng($toImpose);
 $dest    = imagecreatefrompng($ipath);
-imagescale($src, 500, 400);
 $image   = merge_images($dest, $src);
 image_clear($src);
 image_clear($dest);
@@ -53,7 +51,7 @@ try
 {
   if (isset($_SESSION['login']))
   {
-    $loggedin = $_SESSION['login'];
+    $loggedin = htmlspecialchars($_SESSION['login']);
     $conn = $start->server_connect();
     $sql = $conn->prepare("SELECT * FROM users WHERE login = :login");
     $sql->bindParam(":login", $loggedin);
@@ -63,21 +61,20 @@ try
     }
     else
       echo "error";
-    $sql = $conn->prepare("INSERT INTO images(`image`, `user_id`) VALUES (:img, :user)");
+    $sql = $conn->prepare("INSERT INTO images(`image`, `email`) VALUES (:img, :user)");
     $sql->bindParam(":img", $ipath);
-    $sql->bindParam(":user", $res['user_id']);
+    $sql->bindParam(":user", $res['email']);
     if ($sql->execute())
     {
       $img = array('image' => $ipath);
       echo json_encode($img);
     }
     else {
-      echo "failure". PHP_EOL;
+      echo json_encode(array('error' => "ajax.php insertion failure"));
     }
   }
   else {
-    echo json_encode(array("error" => "error"));
-    header("Location: login.php");
+    echo json_encode(array("error" => "logged out"));
   }
 }
 catch(PDOException $error)

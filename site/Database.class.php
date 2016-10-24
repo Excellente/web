@@ -55,7 +55,7 @@ class Database
 
     if ($conn->query($sql))
     {
-      echo "table created successfully<br>";
+      echo "Users table created successfully<br>";
     }
     else
     {
@@ -63,12 +63,39 @@ class Database
     }
     $sql = ("CREATE TABLE IF NOT EXISTS images(
   				 `image_id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  				 `user_id` INT(8) NOT NULL,
+  				 `email` VARCHAR(255) NOT NULL,
   				 `image` VARCHAR(255) NOT NULL,
-  				 `likes` INT(8))");
+           `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
     if ($conn->query($sql))
     {
-      echo "table created successfully<br>";
+      echo "Images table created successfully<br>";
+    }
+    else
+    {
+      echo "couldn't create table<br>";
+    }
+    $sql = ("CREATE TABLE IF NOT EXISTS likes(
+           `id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+           `image_id` VARCHAR(8) NOT NULL,
+           `email` VARCHAR(255) NOT NULL,
+           `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+    if ($conn->query($sql))
+    {
+      echo "Likes table created successfully<br>";
+    }
+    else
+    {
+      echo "couldn't create table<br>";
+    }
+    $sql = ("CREATE TABLE IF NOT EXISTS comments(
+           `id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+           `image_id` VARCHAR(8) NOT NULL,
+           `user_id` VARCHAR(255) NOT NULL,
+           `comment` TEXT,
+           `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+    if ($conn->query($sql))
+    {
+      echo "Comments table created successfully<br>";
     }
     else
     {

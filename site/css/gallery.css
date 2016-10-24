@@ -3,8 +3,79 @@ body {
   background        : linear-gradient(rgba(200, 200, 200, 0.7), rgba(200, 200, 200, 0.7)),
                       url("http://www.walldevil.com/wallpapers/a63/beautiful-background-sphere-website-backgrounds-different.jpg");
 }
+input {
+  width             : 65%;
+  text-shadow       : 10px;
+  font-size         : 20px;
+  font-family       : 'Roboto', sans-serif;
+  padding           : 10px 10px 10px 10px;
+  margin            : 10px 0px;
+}
+table tr td button {
+  margin: 0px;
+  border            : 0px;
+  color             : white;
+  font-weight       : bold;
+  font-family       : avenir next;
+  background-color  : #001122;
+  z-index: 400000000000;
+}
+label {
+  color: white;
+  font-size: 0.3em;
+}
+#exit-button {
+  vertical-align: baseline;
+}
+#close {
+  margin: 0px;
+  width: 30%;
+  height: 5%;
+  border            : 0px;
+  color             : white;
+  font-weight       : bold;
+  font-family       : avenir next;
+  background-color  : #001122;
+  z-index: 400000000000;
+}
+#edits {
+  width: 300;
+  height: 200;
+  margin: 0;
+}
+#div-image {
+  text-align: center;
+  margin-left: 100px;
+  float: left;
+}
+#form {
+  float: left;
+}
+#inside-comment {
+  margin: 0 auto;
+  width: 45%;
+  height: 70%;
+  text-align: center;
+  background-color: #eee;
+  border: 3px solid white;
+}
+#comment {
+  display: none;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-size:3em;
+  overflow: hidden;
+  text-align: center;
+  position:fixed;
+  margin: 0;
+  padding-top: 200px;
+  font-stretch: 50px;
+  font-family: 'Anton', sans-serif;
+  z-index: 4000000000;
+  background-color: rgba(0, 0, 0, 0.7);
+}
 #container {
-	width: 600px;
   margin: 40px auto;
   border: 2px solid grey;
 }
@@ -20,15 +91,15 @@ body {
   display: inline-block;
 }
 #header {
-  height            : 4.0em;
+  height            : 2.8em;
   text-align        : center;
   font-stretch      : 4px;
+  font-size         : 1.0em;
   color             : #000;
   font-weight       : bold;
   font-family       : 'Oswald', sans-serif;
   width             : inherit;
   padding-top       : 5px;
-  background-color  : #000;
+  background-color  : rgba(255, 0, 0, 0.5);
   box-shadow        : 0 2px 8px #2d1447;
-  border: 1px soli grey;
 }

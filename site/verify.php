@@ -33,7 +33,7 @@ else {
   Please click the link below to activate your account:
   http://127.0.0.1:8080/emsimang/verify.php?email='.$email.'&hashkey='.$hash.'
 
-  If you feel this is annoying, yeah we know, but this is soley
+  If you feel this is annoying, we know, but this is solely
   done to ensure maximum security of your personal data.';
   $headers = 'From:noreply@aremac.com'."\r\n";
   $error_report = mail($to, $subject, $message, $headers);
