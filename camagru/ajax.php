@@ -30,6 +30,7 @@ function merge_images($img_dst, $img_src)
 
 $start    = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
 $data     = htmlspecialchars($_POST['data']);
+$img_id   = htmlspecialchars($_POST['img_id']);
 $toImpose = htmlspecialchars($_POST['toImpose']);
 $info     = getimagesize($toImpose);
 $ext      = image_type_to_extension($info[2]);
@@ -61,12 +62,13 @@ try
     }
     else
       echo "error";
-    $sql = $conn->prepare("INSERT INTO images(`image`, `email`) VALUES (:img, :user)");
+    $sql = $conn->prepare("INSERT INTO images(`image_id`, `image`, `email`) VALUES (:img_id, :img, :user)");
     $sql->bindParam(":img", $ipath);
+    $sql->bindParam(":img_id", $img_id);
     $sql->bindParam(":user", $res['email']);
     if ($sql->execute())
     {
-      $img = array('image' => $ipath);
+      $img = array('image' => $ipath, 'img_id' => $img_id);
       echo json_encode($img);
     }
     else {

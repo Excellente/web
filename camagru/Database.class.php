@@ -62,7 +62,7 @@ class Database
       echo "couldn't create table<br>";
     }
     $sql = ("CREATE TABLE IF NOT EXISTS images(
-  				 `image_id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  				 `image_id` INT(8) NOT NULL PRIMARY KEY,
   				 `email` VARCHAR(255) NOT NULL,
   				 `image` VARCHAR(255) NOT NULL,
            `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");

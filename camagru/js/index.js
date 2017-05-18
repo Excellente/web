@@ -48,8 +48,29 @@ document.querySelector('#like').addEventListener('click', function ()
 
 function comment(element)
 {
+  var img_id = element.id;
+  var xhttp = new XMLHttpRequest();
+  var data = "img_id="+img_id;
   document.getElementById('to-comment').setAttribute('src', element.src);
   document.getElementById('comment').style.display = 'block';
+  xhttp.open("POST", "viewed.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.onreadystatechange = function()
+  {
+      if (xhttp.readyState == XMLHttpRequest.DONE)
+      {
+          if(xhttp.status == 200)
+          {
+            var data = JSON.parse(xhttp.responseText);
+            console.log(data);
+          }
+          else
+          {
+              console.log('Error: ' + xhttp.statusText);
+          }
+      }
+  };
+  xhttp.send(data);
 }
 
 function loadGallery()
@@ -72,10 +93,10 @@ function loadGallery()
               var image = document.createElement('img');
               var t_dat = document.createElement('td');
               image.setAttribute('src', data.data[i - 1].image);
-              image.setAttribute('id', 'edits');
+              image.setAttribute('id', data.data[i - 1].image_id);
               image.setAttribute('onclick', 'comment(this)');
-              image.style.width = "100";
-              image.style.height = "100";
+              image.style.width = "80";
+              image.style.height = "60";
               l_tab.appendChild(t_row);
               t_row.appendChild(t_dat);
               t_dat.appendChild(image);

@@ -11,7 +11,10 @@ input {
   padding           : 10px 10px 10px 10px;
   margin            : 10px 0px;
 }
-table tr td button {
+button:focus{
+  outline: none;
+}
+button {
   margin: 0px;
   border            : 0px;
   color             : white;

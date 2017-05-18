@@ -21,22 +21,16 @@
     </div>
 		<div id="comment">
 			<div id="inside-comment" scrollable="true">
-				<table>
-					<tr>
-						<div id="div-image"><img id="to-comment" 		src="http://lazypenguins.com/wp-content/uploads/2015/11/Fierce-Bengal-Tiger.jpg" 		alt="" width="400" height="500">
-						</div>
-					</tr>
-					<tr>
-						<td>
-								<form id="form" action="comment.php" method="post">
-									<input type="comment" placeholder="comment" name="p_comment" value="">
-								</form>
-						</td>
-						<td>
-							<button id="like" type="button" name="like">like</button>
-						</td>
-					</tr>
-				</table>
+        <div id="div-image"><img id="to-comment" src="http://lazypenguins.com/wp-content/uploads/2015/11/Fierce-Bengal-Tiger.jpg" alt="" width="400" height="500">
+        </div>
+        <div>
+          <form id="form" action="comment.php" method="post">
+            <input type="comment" placeholder="comment" name="p_comment" value="">
+          </form>
+        </div>
+        <div>
+          <button id="like" type="button" name="like">like</button>
+        </div>
 				<div id="exit-button">
 					<button id="close" type="button" name="close">close</button>
 			</div>

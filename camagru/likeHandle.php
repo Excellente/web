@@ -6,6 +6,7 @@ require_once "Database.class.php";
 $start = new Database($DB_DSN.$DB, $DB_USER, $DB_PASSWORD);
 if (isset($_SESSION['login']) && !empty($_SESSION['login']))
 {
+  $img_id = htmlspecialchars($_SESSION['img_id']);
   $login = htmlspecialchars($_SESSION['login']);
   $conn = $start->server_connect();
   $sql = $conn->prepare("SELECT * FROM users WHERE login = :login");

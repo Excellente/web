@@ -40,6 +40,11 @@ function flash()
   }, 30);
 }
 
+function time() {
+  var timestamp = Math.floor(new Date().getTime() / 1000)
+  return timestamp;
+}
+
 function saveimg()
 {
   imgURL = canvas.toDataURL('image/png');
@@ -47,7 +52,8 @@ function saveimg()
   photo.setAttribute("src", imgURL);
   var toImpose = document.getElementById('imposed').getAttribute('src');
   console.log("captured image "+toImpose);
-  var data = "data="+imgURL+"&toImpose="+toImpose;
+  console.log("Epoch Time: " +time());
+  var data = "img_id="+time()+"&data="+imgURL+"&toImpose="+toImpose;
   xhttp.open("POST", "ajax.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.onreadystatechange = function()
@@ -58,7 +64,7 @@ function saveimg()
           {
             var data = JSON.parse(xhttp.responseText);
             document.getElementById('pic').setAttribute('src', data.image);
-            console.log('Response: ' + data.image);
+            console.log('Response img: ' +data.image+ '\nResponse img_id: '+ data.img_id);
           }
           else
           {
